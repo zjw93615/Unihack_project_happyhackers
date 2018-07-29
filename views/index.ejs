@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Unihack Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+  <script>
+      function showDetail(obj) {
+        var name = obj;
+        var card = document.getElementsByClassName("patient-card");
+        for(var i=0; i<card.length; i++){
+          card[i].style.display='none';
+        }
+        
+        var target = document.getElementById(name);
+        target.style.display='block';
+      }
+      function back() {
+        var card = document.getElementsByClassName('patient-card');
+        for(var i=0; i<card.length;i++){
+          card[i].style.display='none';
+        }
+        card[0].style.display='block';
+      }
+  </script>
+    <script>
+      window.onload=function() {
+        
+        var oTab = document.getElementsByName("tab");
+        var oContent = document.getElementsByClassName("tab-content");
+
+
+        for(var i=0; i< oTab.length;i++){
+          oTab[i].index = i;
+          oTab[i].onclick = function() {
+            for(var i=0; i<oTab.length;i++){
+                oTab[i].className='';  //循环清空li样式
+                oContent[i].style.display='none';  //循环隐藏所有div
+            }
+            this.className='active';
+            oContent[this.index].style.display='block';
+          }
+        }
+        oTab[0].className='active';
+        oContent[0].style.display='block';
+      }
+      
+    </script>
+</head>
+
+<body>
+
+    <%- include header.ejs %>
+  
+<div class="container text-center">    
+  <div class="row">
+    <div class="col-sm-3 well">
+      <div class="well">
+          <% if (user != undefined) { %>
+            <img src="/images/WechatIMG387.png" data-toggle="modal" data-target="#logout-modal" class="img-circle" height="120px" width="120px" alt="Avatar">
+          <% } else { %><% } %>
+        <hr>
+        <% if (user != undefined) { %>
+          <%= user.name %>
+        <% } else { %><% } %>
+      </div>
+      <div class="well">
+              <div class="row">
+                  <div class="span2">
+                      <ul class="nav nav-pills nav-stacked">
+                          <li name="tab"><a href="#">Home</a></li>
+                          <li name="tab"><a href="#" id="patients-link">Customer List</a></li>
+                          <li name="tab"><a href="#">Calender</a></li>
+                          <li name="tab"><a href="#">Workout Plan</a></li>
+                          <li name="tab"><a href="#">Contact</a></li>
+                      </ul>
+                  </div>
+              </div>
+      </div>
+      <!-- <div class="alert alert-success fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        <p><strong>Ey!</strong></p>
+        People are looking at your profile. Find out who.
+      </div> -->
+    
+    </div>
+
+
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="col-sm-12">
+            <nav class="navbar navbar-dark bg-primary">
+                <!-- Navbar content -->
+                <div class="container">
+                    <a class="navbar-brand" style="color:white" href="#">Hello Doctor</a>
+                </div>
+            </nav>
+          <% if (user != undefined) { %>
+          <div class="panel panel-default text-left tab-content" style="display:none">
+            <div class="panel-body" id="home-panel">
+              
+              <div class="col-sm-4">
+                  <div class="card">
+                      <div class="card-header card1"> 
+                        <p style="color: white">Section Analysis</p>
+                      </div>
+                      <div class="card-body">
+                       <img class="card-img-bottom" src="/images/WechatIMG388.png" alt="Card image" style="width:100%">
+                      </div>
+                      
+                    </div>
+              </div>  
+              <div class="col-sm-1"></div>  
+              <div class="col-sm-6">
+                  <div class="card">
+                      <div class="card-header card2"> 
+                        <p style="color: white">Date Analysis</p>
+                      </div>
+                      <div class="card-body">
+                       <img class="card-img-bottom" src="/images/WechatIMG389.png" alt="Card image" style="width:100%">
+                      </div>
+                      
+                  </div>
+              </div> 
+              <div class="col-sm-11">
+                  <div class="card">
+                      <div class="card-header card3"> 
+                        <p style="color: white">File Update</p>
+                      </div>
+                      <div class="card-body">
+                          <table class="table">
+                              <tbody>
+                                <tr>
+                                  <td>Oliver Jake</td>
+                                  <td>Pain Medicine period 2 weeks</td>
+                                  <td>16 mins ago</td>
+                                </tr>
+                                <tr>
+                                  <td>Jack Conner</td>
+                                  <td>Pain Medicine period 4 weeks</td>
+                                  <td>1 h ago</td>
+                                </tr>
+                                <tr>
+                                  <td>Harry Callum</td>
+                                  <td>Spinal cord injury period 20 days</td>
+                                  <td>10 h ago</td>
+                                </tr>
+                                <tr>
+                                  <td>Charlie Kyle</td>
+                                  <td>Neuromuscular medicine period 3 weeks</td>
+                                  <td>Yesterday</td>
+                                </tr>
+                                
+                              </tbody>
+                            </table>
+                      </div>
+                      
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+    <div id="patients-list" class="tab-content patients-list" style="display:none">
+      <div class="patient-card">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="well">
+           <p>Oliver Jake</p>
+           <a href="javascript:void(0)" onclick="showDetail(this.name)" name="001">Details</a>
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <div class="well">
+            <div class="row" style="text-align: left; margin-left: 30px;"> Description: None</div>
+            <div class="row" style="text-align: left; margin-left: 30px;"> Last: 1 h ago</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="well">
+           <p>Jack Conner</p>
+           <a href="javascript:void(0)" onclick="showDetail(this.name)" name="002">Details</a>
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <div class="well">
+              <div class="row" style="text-align: left; margin-left: 30px;"> Description: Medicine causes side effect, last 2 days</div>
+              <div class="row" style="text-align: left; margin-left: 30px;"> Last: 5 h ago</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="well">
+           <p>Jane</p>
+           <a href="javascript:void(0)" onclick="showDetail(this.name)" name="003">Details</a>
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <div class="well">
+              <div class="row" style="text-align: left; margin-left: 30px;"> Description: Condition improved; reduce dose</div>
+              <div class="row" style="text-align: left; margin-left: 30px;"> Last: 1 d ago</div>  
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="well">
+           <p>Anja</p>
+           <a href="javascript:void(0)" onclick="showDetail(this.name)" name="004">Details</a>
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <div class="well">
+              <div class="row" style="text-align: left; margin-left: 30px;"> Description: Be infected by others; need to be quarantined</div>
+              <div class="row" style="text-align: left; margin-left: 30px;"> Last: 1 d ago</div>    
+          </div>
+        </div>
+      </div>  
+    </div>
+    <%- include patient.ejs %>   
+    </div>
+    <div class="panel panel-default text-left tab-content" style="display:none"></div>
+    <div class="panel panel-default text-left tab-content" style="display:none"></div>
+    <div class="panel panel-default text-left tab-content" style="display:none"></div>
+</div>
+<% } else { %><% } %>
+    <!-- <div class="col-sm-2 well">
+      <div class="thumbnail">
+        <p>Upcoming Events:</p>
+        <img src="paris.jpg" alt="Paris" width="400" height="300">
+        <p><strong>Paris</strong></p>
+        <p>Fri. 27 November 2015</p>
+        <button class="btn btn-primary">Info</button>
+      </div>      
+      <div class="well">
+        <p>ADS</p>
+      </div>
+      <div class="well">
+        <p>ADS</p>
+      </div>
+    </div> -->
+  </div>
+</div>
+
+<%- include footer.ejs %>
+
+</body>
+</html>

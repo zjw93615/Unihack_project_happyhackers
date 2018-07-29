@@ -1,0 +1,115 @@
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background: black;
+    color: white;
+    padding: 15px;
+}
+
+nav {
+    border-radius: 0px!important;
+}
+
+.footer-content {
+    align-items: center;
+    margin-bottom: 0!important;
+}
+
+.card1 { 
+    align-items: center; 
+    background-color:#337ab7;
+    margin-bottom: 15px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+}
+.card2 {
+    align-items: center; 
+    background-color:#337ab7;
+    margin-bottom: 40px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+}
+.card3 { 
+    align-items: center; 
+    background-color:#337ab7;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+p {
+    margin-bottom: 0!important;
+}
+.user-btn{
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    color: white;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 2px solid white;
+    font-size: 15px;
+    border-radius: 200px;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.left-btn {
+    float: left;
+}
+.right-btn {
+    float: right;
+}
+.grid-container-patient {
+    display: grid;
+    grid-template-rows:30px 30px 30px 30px 30px;
+    grid-template-columns: 30% 30% 40%;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+.item-photo {
+    grid-area: 1 / 1 / span 4 / span 1;
+}
+.item-name {
+    grid-area: 1 / 2 / span 1 / span 1;
+    text-align: left;
+}
+.item-id {
+    grid-area: 2 / 2 / span 1 / span 1;
+    text-align: left;
+}
+.item-age {
+    grid-area: 3 / 2 / span 1 / span 1;
+    text-align: left;
+}
+.item-date {
+    grid-area: 2 / 3 / span 1 / span 1;
+    text-align: left;
+}
+.item-mobile {
+    grid-area: 3 / 3 / span 1 / span 1;
+    text-align: left;
+}
+.item-address {
+    grid-area: 4 / 2 / span 1 / span 2;
+    text-align: left;
+}
+.item-symptoms {
+    grid-area: 5 / 2 / span 1 / span 2;
+    text-align: left;
+}

@@ -1,0 +1,91 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="#">Logo</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Messages</a></li>
+        </ul>
+        <form class="navbar-form navbar-right" role="search">
+          <div class="form-group input-group">
+            <input type="text" class="form-control" placeholder="Search..">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </span>        
+          </div>
+        </form>
+
+        <!-- need furthur modification -->
+        <% if (user != undefined) { %>
+
+          <!-- <div class="btn-outline-light rounded-circle user-btn navbar-right" data-toggle="modal" data-target="#logout-modal">
+              <div class="align-middle"><span class="glyphicon glyphicon-user"></span></div>
+          </div> -->
+
+        <% } else { %>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a class="btn btn-outline-dark my-btn" href="/login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+            <li><a class="btn btn-outline-dark my-btn" href="/signup"><span class="glyphicon glyphicon-pencil"></span> Sign up</a></li>
+          </ul>
+
+        <% } %>
+
+
+        <!-- Modal -->
+          <div class="modal fade" id="logout-modal" role="dialog" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h4 class="modal-title" id="exampleModalLabel">
+                              <% if (user != undefined) { %>
+                                  User name:
+                                  <%= user.name %>
+                                      <% } else { %>
+                                          User:
+                                          <% } %>
+                          </h4>
+                      </div>
+                      <div class="modal-body">
+                          <h6>
+                              <% if (user != undefined) { %>
+                                  <% if (user.email != undefined) { %>
+                                      Email:
+                                      <%= user.email %>
+                                          <% } else { %>
+                                              Email:
+                                              <% } %>
+                                                  <% } %>
+                          </h6>
+                          <h6>
+                              <% if (user != undefined) { %>
+                                  <% if (user.phone != undefined) { %>
+                                      Phone:
+                                      <%= user.phone %>
+                                          <% } %>
+                                              <% } %>
+                          </h6>
+
+                      </div>
+                      <div class="modal-footer">
+                          <a href="/logout" class="btn btn-secondary" title="logout" style="color:black">
+                              logout
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
+      </div>
+    </div>
+  </nav>
